@@ -49,7 +49,6 @@ int main (int argc, char *argv[]) {
 			binary(octeto4, result_ip);
 			binary(mascara, result_mascara);
 			invertBinary(result_mascara, binaryinvert);
-			//puts(result_ip);
 			int subred;
 			int broadcast;
 			subred = binaryAND(result_ip, result_mascara, result);
@@ -64,23 +63,8 @@ int main (int argc, char *argv[]) {
 			cout << "\t Host max: " << octeto1 << "." << octeto2 << "." << octeto3 << "." << (broadcast - 1 )<< endl;
 			cout << "\t Brodcast: " << octeto1 << "." << octeto2 << "." << octeto3 << "." << broadcast << endl;
 			cout << "------------------------------------------ \n" << endl;
-			printAuthors();
-			//printf("%d \n", m);
-			//bintodecimal(int(result));
-			/*for (j = 1; j <= NUM_BITS; j++) {
-			//m[j] = (int)result[j];
-			numfinal = result[j];
-			printf("\n %c", '0' + result[j]);
-			if (j == 8) {
-			}
-			}*/
-			//printf("\n numero %d \n", m);
-			//puts(result_mascara);
-			//printf("IP digitada %d.%d.%d.%d \n mascara 255.255.255.%d", octeto1, octeto2, octeto3, octeto4, mascara);
 			return EXIT_SUCCESS;
 		}
-		//printf("Clase incorrecta, por favor elija la correcta \n");
-		//scanf("%d", octeto1);
 	} while(option_address != 4);
 	return 0;
 }
@@ -110,8 +94,6 @@ int binaryAND(char numero_1[], char numero_2[], char result[]){
 		bit_1 = numero_1[i - 1] - '0';
 		bit_2 = numero_2[i - 1] - '0';
 		result[i] = bit_1 & bit_2;
-		//printf("\n AND (%d) AND (%d) = %d", bit_1, bit_2, result[i]);
-		//result[i] = bit_1 * bit_2;
 	}
 	int respuesta = 0, increment;
 	for (j = 8; j > 0; j--) {
@@ -124,24 +106,9 @@ int binaryAND(char numero_1[], char numero_2[], char result[]){
 		
 		increment = (result[j] * sol);
 		respuesta = increment + respuesta;
-		//increment++;
-		
-		//m[j] = (int)result[j];
-		//res = result[j] * pow(base, t) + res;
-		//printf("\n solucion (%d) * (%d) = (%d), %d \n",sol, result[j], increment, respuesta );
-		//printf("%d %c %lf \n", j, '0' + result[j], res);
 		t++;
 	}
-	//printf("\n respuesta (%d) \n ",respuesta);
-	/*int num;
-	num = ceil(res);
-	printf("%d \n", num);*/
 	return respuesta;
-	/*
-	for (j = 0; j < NUM_BITS +1; j++)
-	printf("\n %c", '0' + result[j]);
-	printf("\n");
-	*/
 }
 
 
@@ -156,17 +123,7 @@ void binary(int num, char result_convert[]){
 	D6=D5/2;R6=D5%2;
 	D7=D6/2;R7=D6%2;
 	R8=D7%2;
-	//cout<<R8<<R7<<R6<<R5<<R4<<R3<<R2<<R1<<endl;
 	sprintf(result_convert, "%d%d%d%d%d%d%d%d", R8, R7, R6, R5, R4, R3, R2, R1);
-	/*result_convert[0] = R8;
-	result_convert[1] = R7;
-	result_convert[2] = R6;
-	result_convert[3] = R5;
-	result_convert[4] = R4;
-	result_convert[5] = R3;
-	result_convert[6] = R2;
-	result_convert[7] = R1;
-	*/
 }
 
 void invertBinary(char character[], char resultado[]){
@@ -186,8 +143,6 @@ int binaryOR(char num_1[], char num_2[], char result_final[]){
 		bit_1 = num_1[i - 1] - '0';
 		bit_2 = num_2[i];
 		result_final[i] = bit_1 | bit_2;
-		//printf("\n primer bit %d  segundo bit %d  resultado %d \n", bit_1, bit_2, result_final[i]);
-		//result[i] = bit_1 * bit_2;
 	}
 	int respuesta = 0, increment;
 	for (j = 8; j > 0; j--) {
@@ -200,12 +155,6 @@ int binaryOR(char num_1[], char num_2[], char result_final[]){
 		
 		increment = (result_final[j] * sol);
 		respuesta = increment + respuesta;
-		//increment++;
-		
-		//m[j] = (int)result[j];
-		//res = result[j] * pow(base, t) + res;
-		//printf("\n solucion (%d) * (%d) = (%d), %d \n",sol, result[j], increment, respuesta );
-		//printf("%d %c %lf \n", j, '0' + result[j], res);
 		t++;
 	}
 	return respuesta;
