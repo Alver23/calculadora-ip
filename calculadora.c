@@ -16,54 +16,27 @@ int binaryOR(char num_1[], char num_2[], char result_final[]);
 void bintodecimal(int num);
 void invertBinary(char character[], char resultado[]);
 void printAuthors();
+void print_class_c(int octeto1, int octeto2, int octeto3, int octeto4);
 
 int main (int argc, char *argv[]) {
-	int option_address;
-	int octeto1;
-	int octeto2;
-	int octeto3;
-	int octeto4;
-	int mascara;
-	int is_valid;
+	int option_address, octeto1, octeto2, octeto3, octeto4, is_valid;
 	printf("Digite el primer octeto de la IP Adress: \n");
 	scanf("%d", &octeto1);
 	do {
 		menu_class_ip();
 		scanf("%d", &option_address);
 		is_valid = validate_class(option_address, octeto1);
-		if (is_valid == 3) {
-			char result_ip[NUM_BITS+1];
-			char result_mascara[NUM_BITS+1];
-			char result[NUM_BITS];
-			char binaryinvert[NUM_BITS + 1];
-			char resultinvert[NUM_BITS];
-			string numfinal;
+		if (is_valid != 0) {
 			printf("Digite el segundo octeto de la IP Address: \n");
 			scanf("%d", &octeto2);
 			printf("Digite el tercer octeto de la IP Address: \n");
 			scanf("%d", &octeto3);
 			printf("Digite el cuarto octeto de la IP Address: \n");
 			scanf("%d", &octeto4);
-			printf("Digite la mascara de subred 255.255.255.");
-			scanf("%d", &mascara);
-			binary(octeto4, result_ip);
-			binary(mascara, result_mascara);
-			invertBinary(result_mascara, binaryinvert);
-			int subred;
-			int broadcast;
-			subred = binaryAND(result_ip, result_mascara, result);
-			broadcast = binaryOR(result_ip, binaryinvert, resultinvert);
-			cout << "------------------------------------------" << endl;
-			cout << " \t  \t  Resultado" << endl;
-			cout << "------------------------------------------" << endl;
-			cout << "\t Address: " << octeto1 << "." << octeto2 << "." << octeto3 << "." << octeto4 << endl;
-			cout << "\t Netmask: 255.255.255." << mascara << endl;
-			cout << "\t Network: " << octeto1 << "." << octeto2 << "." << octeto3 << "." << subred << endl;
-			cout << "\t Host min: " << octeto1 << "." << octeto2 << "." << octeto3 << "." << (subred + 1)<< endl;
-			cout << "\t Host max: " << octeto1 << "." << octeto2 << "." << octeto3 << "." << (broadcast - 1 )<< endl;
-			cout << "\t Brodcast: " << octeto1 << "." << octeto2 << "." << octeto3 << "." << broadcast << endl;
-			cout << "------------------------------------------ \n" << endl;
-			return EXIT_SUCCESS;
+			if (is_valid == 3) {
+				print_class_c(octeto1, octeto2, octeto3, octeto4);
+				return EXIT_SUCCESS;
+			}
 		}
 	} while(option_address != 4);
 	return 0;
@@ -166,4 +139,33 @@ void printAuthors(){
 	cout << "\t Angela Lorena Pantoja" << endl;
 	cout << "\t Alver Alexader Grisales" << endl;
 	cout << "------------------------------------------ \n" << endl;
+}
+void print_class_c(int octeto1, int octeto2, int octeto3, int octeto4){
+	int mascara;
+	char result_ip[NUM_BITS+1];
+	char result_mascara[NUM_BITS+1];
+	char result[NUM_BITS];
+	char binaryinvert[NUM_BITS + 1];
+	char resultinvert[NUM_BITS];
+	string numfinal;
+	printf("Digite la mascara de subred 255.255.255.");
+	scanf("%d", &mascara);
+	binary(octeto4, result_ip);
+	binary(mascara, result_mascara);
+	invertBinary(result_mascara, binaryinvert);
+	int subred;
+	int broadcast;
+	subred = binaryAND(result_ip, result_mascara, result);
+	broadcast = binaryOR(result_ip, binaryinvert, resultinvert);
+	cout << "------------------------------------------" << endl;
+	cout << " \t  \t  Resultado" << endl;
+	cout << "------------------------------------------" << endl;
+	cout << "\t Address: " << octeto1 << "." << octeto2 << "." << octeto3 << "." << octeto4 << endl;
+	cout << "\t Netmask: 255.255.255." << mascara << endl;
+	cout << "\t Network: " << octeto1 << "." << octeto2 << "." << octeto3 << "." << subred << endl;
+	cout << "\t Host min: " << octeto1 << "." << octeto2 << "." << octeto3 << "." << (subred + 1)<< endl;
+	cout << "\t Host max: " << octeto1 << "." << octeto2 << "." << octeto3 << "." << (broadcast - 1 )<< endl;
+	cout << "\t Brodcast: " << octeto1 << "." << octeto2 << "." << octeto3 << "." << broadcast << endl;
+	cout << "------------------------------------------ \n" << endl;
+	printAuthors();
 }
