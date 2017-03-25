@@ -11,8 +11,8 @@ using namespace std;
 
 void instrucciones();
 void print_number(int num);
-void addressing_ip()
-string convierteBin(int);
+void addressing_ip();
+	string convierteBin(int);
 string binary(int num);
 
 int main() {
@@ -31,31 +31,31 @@ int main() {
 		instrucciones();
 		scanf("%d", &opcion);
 		switch(opcion) {
-			case 1:
-				result = Suma(numero1, numero2);
-				break; /* optional */
-				
-			case 2:
-				result = Resta(numero1, numero2);
-				break; /* optional */
-			case 3:
-				result = Multiplicacion(numero1, numero2);
-				break; /* optional */
-				
-			case 4:
-				if (numero2 != 0)/* Si el divisor es distinto de 0 realizara la operacion */
-				{
-					result = Division(numero1, numero2);
-				} else {
-					printf("\n No se puede realizar esa division porque el divisor es 0!!");  /* Si el divisor es igual a 0 muestra este mensaje de error */
-				}
-				break; /* optional */
-			case 5:
-				addressing_ip();
-				break;
-			case 6:
-				return EXIT_SUCCESS;
-				break; /* optional */
+		case 1:
+			result = Suma(numero1, numero2);
+			break; /* optional */
+			
+		case 2:
+			result = Resta(numero1, numero2);
+			break; /* optional */
+		case 3:
+			result = Multiplicacion(numero1, numero2);
+			break; /* optional */
+			
+		case 4:
+			if (numero2 != 0)/* Si el divisor es distinto de 0 realizara la operacion */
+			{
+				result = Division(numero1, numero2);
+			} else {
+				printf("\n No se puede realizar esa division porque el divisor es 0!!");  /* Si el divisor es igual a 0 muestra este mensaje de error */
+			}
+			break; /* optional */
+		case 5:
+			addressing_ip();
+			break;
+		case 6:
+			return EXIT_SUCCESS;
+			break; /* optional */
 			
 			/* you can have any number of case statements */
 			default : /* Optional */
@@ -178,7 +178,7 @@ string convierteBin(int num) {
 }
 
 void addressing_ip() {
-
+	
 	int validate_class(int class_ip, int octeto);
 	int binaryAND(char numero_1[], char numero_2[]);
 	int binaryOR(char num_1[], char num_2[]);
@@ -190,7 +190,7 @@ void addressing_ip() {
 	void print_class_c(int octeto1, int octeto2, int octeto3, int octeto4);
 	void print_class_b(int octeto1, int octeto2, int octeto3, int octeto4);
 	void print_class_a(int octeto1, int octeto2, int octeto3, int octeto4);
-
+	
 	int option_address, octeto1, octeto2, octeto3, octeto4, is_valid;
 	printf("Digite el primer octeto de la IP Adress: \n");
 	scanf("%d", &octeto1);
@@ -207,17 +207,17 @@ void addressing_ip() {
 			scanf("%d", &octeto4);
 			if (is_valid == 3) {
 				print_class_c(octeto1, octeto2, octeto3, octeto4);
-				return EXIT_SUCCESS;
+				exit(0);
 			} else if(is_valid == 2){
 				print_class_b(octeto1, octeto2, octeto3, octeto4);
-				return EXIT_SUCCESS;
+				exit(0);
 			} else if (is_valid == 1) {
 				print_class_a(octeto1, octeto2, octeto3, octeto4);
-				return EXIT_SUCCESS;
+				exit(0);
 			}
 		}
 	} while(option_address != 4);
-	return 0;
+	exit(0)  ;
 }
 
 void menu_class_ip() {
@@ -316,7 +316,7 @@ void printAuthors(){
 	cout << "------------------------------------------ \n" << endl;
 	cout << "\t \t Autores" << endl;
 	cout << "------------------------------------------ \n" << endl;
-	//cout << "\t Angela Lorena Pantoja" << endl;
+	cout << "\t Angela Lorena Pantoja" << endl;
 	cout << "\t Alver Alexader Grisales" << endl;
 	cout << "------------------------------------------ \n" << endl;
 }
@@ -350,7 +350,7 @@ void print_class_c(int octeto1, int octeto2, int octeto3, int octeto4){
 void print_class_b(int octeto_1, int octeto_2, int octeto_3, int octeto_4) {
 	int netmask_1, netmask_2, network_1, network_2, broadcast_1, broadcast_2;
 	char binary_octeto_1[NUM_BITS], binary_octeto_2[NUM_BITS], binary_netmask_1[NUM_BITS], binary_netmask_2[NUM_BITS], binary_invert_netmask_1[NUM_BITS],
-	binary_invert_netmask_2[NUM_BITS];
+		binary_invert_netmask_2[NUM_BITS];
 	printf("Digite el tercer octeto de la mascara de subred 255.255.");
 	scanf("%d", &netmask_1);
 	printf("Digite el cuarto octeto de la mascara de subred 255.255.%d.", netmask_1);
@@ -365,7 +365,7 @@ void print_class_b(int octeto_1, int octeto_2, int octeto_3, int octeto_4) {
 	network_2 = binaryAND(binary_octeto_2, binary_netmask_2);
 	broadcast_1 = binaryOR(binary_octeto_1, binary_invert_netmask_1);
 	broadcast_2 = binaryOR(binary_octeto_2, binary_invert_netmask_2);
-
+	
 	cout << "------------------------------------------" << endl;
 	cout << " \t  \t  Resultado" << endl;
 	cout << "------------------------------------------" << endl;
@@ -382,7 +382,7 @@ void print_class_b(int octeto_1, int octeto_2, int octeto_3, int octeto_4) {
 void print_class_a(int octeto_1, int octeto_2, int octeto_3, int octeto_4) {
 	int netmask_1, netmask_2, netmask_3, network_1, network_2, network_3, broadcast_1, broadcast_2, broadcast_3;
 	char binary_octeto_1[NUM_BITS], binary_octeto_2[NUM_BITS], binary_octeto_3[NUM_BITS], binary_netmask_1[NUM_BITS], binary_netmask_2[NUM_BITS],
-	binary_netmask_3[NUM_BITS], binary_invert_netmask_1[NUM_BITS], binary_invert_netmask_2[NUM_BITS], binary_invert_netmask_3[NUM_BITS];
+		binary_netmask_3[NUM_BITS], binary_invert_netmask_1[NUM_BITS], binary_invert_netmask_2[NUM_BITS], binary_invert_netmask_3[NUM_BITS];
 	printf("Digite el segundo octeto de la mascara de subred 255.");
 	scanf("%d", &netmask_1);
 	printf("Digite el tercer octeto de la mascara de subred 255.%d.", netmask_1);
@@ -404,7 +404,7 @@ void print_class_a(int octeto_1, int octeto_2, int octeto_3, int octeto_4) {
 	broadcast_1 = binaryOR(binary_octeto_1, binary_invert_netmask_1);
 	broadcast_2 = binaryOR(binary_octeto_2, binary_invert_netmask_2);
 	broadcast_3 = binaryOR(binary_octeto_3, binary_invert_netmask_3);
-
+	
 	cout << "------------------------------------------" << endl;
 	cout << " \t  \t  Resultado" << endl;
 	cout << "------------------------------------------" << endl;
